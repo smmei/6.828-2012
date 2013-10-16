@@ -246,5 +246,11 @@ $(OBJDIR)/.deps: $(foreach dir, $(OBJDIRS), $(wildcard $(OBJDIR)/$(dir)/*.d))
 always:
 	@:
 
+cscope:
+	rm -f ./cscope.*
+	find . -name "*.[ch]" -print | sed 's,^\./,,' > ./cscope.files
+	cscope -b
+
 .PHONY: all always \
-	handin tarball clean realclean distclean grade handin-prep handin-check
+	handin tarball clean realclean distclean grade handin-prep handin-check \
+	cscope
